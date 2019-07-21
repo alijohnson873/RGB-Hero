@@ -1,0 +1,24 @@
+body{
+    font-family: sans-serif;
+}
+
+.color-panel {
+    width: 50%;
+    height: 100vh;
+    color: white;
+}
+
+#comp-color{
+    float: left;
+    background-color: rgb(167, 23, 80);
+}
+
+#player-color{
+    float: right;
+    background-color: rgb(8, 8, 250);
+}
+
+
+/* body{
+    background-color: red;
+} */
