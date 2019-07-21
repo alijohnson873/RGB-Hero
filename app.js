@@ -18,11 +18,32 @@ const showPlayerRGB = () => {
   </h1>`)
 }
 
+const showCompRGB = () => {
+  compColor.html(
+    `<h1> Red: ${compRGBArray[0]}<br>
+    Green: ${compRGBArray[1]}<br>
+    Blue: ${compRGBArray[2]}<br>
+  </h1>`)
+}
+
+compColor.mouseover( () => {
+  compColor.html(
+    `<h1> Red: ${compRGBArray[0]}<br>
+    Green: ${compRGBArray[1]}<br>
+    Blue: ${compRGBArray[2]}<br>
+  </h1>`)
+})
+
+compColor.mouseout( () => {
+  compColor.html("")
+})
+
 //start game
 let rgbSwitch = 0;
 compColor.css("background-color", rgbStringFromArray(compRGBArray));
 playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
 showPlayerRGB();
+
 
 //red green blue switch
 $(document).keydown(function(event) {
@@ -55,7 +76,13 @@ $(document).keydown(function(event) {
 });
 
 
-
+//prevents scrolling in browser
+window.addEventListener("keydown", function(e) {
+  // space and arrow keys
+  if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault();
+  }
+}, false);
 
 
 
