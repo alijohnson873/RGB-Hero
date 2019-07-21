@@ -39,7 +39,7 @@ let blueDifference = compRGBArray[2] - playerRGBArray[2];
 let eucDiff = Math.sqrt((redDifference * redDifference) + (greenDifference * greenDifference) +(blueDifference * blueDifference))
 return Math.round(eucDiff)
 }  
- console.log(euclideanColorDiff())
+ 
 
 //start game
 let rgbSwitch = 0;
@@ -68,13 +68,13 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     showPlayerRGB();
-    console.log(playerRGBArray);
+    console.log(euclideanColorDiff())
   } else if (key === 40) {
     playerRGBArray[rgbSwitch] -= 1;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     showPlayerRGB();
-    console.log(playerRGBArray);
+    console.log(euclideanColorDiff())
   }
 });
 
