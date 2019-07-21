@@ -18,14 +18,7 @@ const showPlayerRGB = () => {
   </h1>`)
 }
 
-const showCompRGB = () => {
-  compColor.html(
-    `<h1> Red: ${compRGBArray[0]}<br>
-    Green: ${compRGBArray[1]}<br>
-    Blue: ${compRGBArray[2]}<br>
-  </h1>`)
-}
-
+//RGB Computer Value on MouseOver and MouseOut
 compColor.mouseover( () => {
   compColor.html(
     `<h1> Red: ${compRGBArray[0]}<br>
@@ -33,10 +26,20 @@ compColor.mouseover( () => {
     Blue: ${compRGBArray[2]}<br>
   </h1>`)
 })
-
 compColor.mouseout( () => {
   compColor.html("")
 })
+
+//calculate euclidean difference
+
+const euclideanColorDiff = () => {
+let redDifference = compRGBArray[0] - playerRGBArray[0];
+let greenDifference = compRGBArray[1] - playerRGBArray[1];
+let blueDifference = compRGBArray[2] - playerRGBArray[2];
+let eucDiff = Math.sqrt((redDifference * redDifference) + (greenDifference * greenDifference) +(blueDifference * blueDifference))
+return Math.round(eucDiff)
+}  
+ console.log(euclideanColorDiff())
 
 //start game
 let rgbSwitch = 0;
