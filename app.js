@@ -15,38 +15,41 @@ const showPlayerRGB = () => {
     `<h1> Red: ${playerRGBArray[0]}<br>
     Green: ${playerRGBArray[1]}<br>
     Blue: ${playerRGBArray[2]}<br>
-  </h1>`)
-}
+  </h1>`
+  );
+};
 
 //RGB Computer Value on MouseOver and MouseOut
-compColor.mouseover( () => {
+compColor.mouseover(() => {
   compColor.html(
     `<h1> Red: ${compRGBArray[0]}<br>
     Green: ${compRGBArray[1]}<br>
     Blue: ${compRGBArray[2]}<br>
-  </h1>`)
-})
-compColor.mouseout( () => {
-  compColor.html("")
-})
+  </h1>`
+  );
+});
+compColor.mouseout(() => {
+  compColor.html("");
+});
 
 //calculate euclidean difference
-
 const euclideanColorDiff = () => {
-let redDifference = compRGBArray[0] - playerRGBArray[0];
-let greenDifference = compRGBArray[1] - playerRGBArray[1];
-let blueDifference = compRGBArray[2] - playerRGBArray[2];
-let eucDiff = Math.sqrt((redDifference * redDifference) + (greenDifference * greenDifference) +(blueDifference * blueDifference))
-return Math.round(eucDiff)
-}  
- 
+  let redDifference = compRGBArray[0] - playerRGBArray[0];
+  let greenDifference = compRGBArray[1] - playerRGBArray[1];
+  let blueDifference = compRGBArray[2] - playerRGBArray[2];
+  let eucDiff = Math.sqrt(
+    redDifference * redDifference +
+      greenDifference * greenDifference +
+      blueDifference * blueDifference
+  );
+  return Math.round(eucDiff);
+};
 
 //start game
 let rgbSwitch = 0;
 compColor.css("background-color", rgbStringFromArray(compRGBArray));
 playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
 showPlayerRGB();
-
 
 //red green blue switch
 $(document).keydown(function(event) {
@@ -68,26 +71,27 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     showPlayerRGB();
-    console.log(euclideanColorDiff())
+    console.log(euclideanColorDiff());
   } else if (key === 40) {
     playerRGBArray[rgbSwitch] -= 1;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     showPlayerRGB();
-    console.log(euclideanColorDiff())
+    console.log(euclideanColorDiff());
   }
 });
 
-
 //prevents scrolling in browser
-window.addEventListener("keydown", function(e) {
-  // space and arrow keys
-  if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+window.addEventListener(
+  "keydown",
+  function(e) {
+    // space and arrow keys
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
       e.preventDefault();
-  }
-}, false);
-
-
+    }
+  },
+  false
+);
 
 // //console log what key is pressed
 // $(document).keydown(function(event) {
