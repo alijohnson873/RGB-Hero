@@ -84,7 +84,7 @@ $(document).keydown(function(event) {
 $(document).keydown(function(event) {
   let key = event.keyCode;
   if (key === 38) {
-    playerRGBArray[rgbSwitch] += 10;
+    playerRGBArray[rgbSwitch] += 5;
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
@@ -96,7 +96,7 @@ $(document).keydown(function(event) {
     console.log(compRGBArray);
     console.log(euclideanColorDiff());
   } else if (key === 40) {
-    playerRGBArray[rgbSwitch] -= 10;
+    playerRGBArray[rgbSwitch] -= 5;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
