@@ -1,29 +1,31 @@
-body{
-    font-family: sans-serif;
-    background-color: black;
+body {
+  font-family: sans-serif;
+  background-color: black;
+}
+
+main {
+  color: white;
 }
 
 .color-panel {
-    width: 10vw;
-    height: 5vw;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    border-radius: 10%;
-    transform: rotate(45deg);
-  
-
+  width: 3vw;
+  height: 3vw;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  margin: 20px;
+  /* transform: rotate(45deg); */
+  font-size: 0;
 }
 
-#comp-color{
-    background-color: rgb(167, 23, 80);
-    
+.comp-color {
+  background-color: rgb(167, 23, 80);
 }
 
-#player-color{
-    background-color: rgb(8, 8, 250);
+.player-color {
+  background-color: rgb(8, 8, 250);
 }
-
 
 /* body{
     background-color: red;
@@ -31,5 +33,3 @@ body{
 
     THIS IS A NOTE.. MAKE TWO circles come together when closer
 } */
-
-

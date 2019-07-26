@@ -196,3 +196,14 @@ const rgbString = (red, green, blue) =>{
   <script src="grids.js"></script>
 </body>
 </html>
+
+
+const addDivs = () => {
+  let htmlDiv = `<div class="color-panel comp-color"><h1>div here</h1></div>
+  <div class="color-panel player-color"></div>`;
+  for (let i=0; i < 5; i++){
+    htmlDiv += htmlDiv;
+  }
+  mainContainer.html(htmlDiv)
+}
+addDivs()
