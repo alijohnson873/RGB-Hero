@@ -17,15 +17,15 @@ const playerColor = $(".player-color");
 const colorPanel = $(".color-panel");
 const mainContainer = $("main");
 
-//generate number between 0-255 rounded to 5 and generate rgb array string
-const randNumGenFive = () => Math.ceil((Math.random() * 255) / 5) * 5;
+//generate number between 0-250 rounded to 10 and generate rgb array string
+const randNumGenFive = () => Math.ceil((Math.random() * 250) / 10) * 10;
 const playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
 const compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
 const rgbStringFromArray = rgbArray => {
   return `rgb(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]})`;
 };
-// limit RGB values to 0-255
-const maxRGB = rgbValue => (rgbValue > 255 ? 255 : rgbValue);
+// limit RGB values to 0-250
+const maxRGB = rgbValue => (rgbValue > 250 ? 250 : rgbValue);
 const minRGB = rgbValue => (rgbValue < 0 ? 0 : rgbValue);
 
 //calculate color difference between arrays as euclidean value
@@ -56,8 +56,9 @@ const borderRadiusEuclidean = () => {
 //win game by matching colors
 const rgbColorMatch = () => {
   let changedColorDiff = colorDiff();
-  if (changedColorDiff <= 10) {
+  if (changedColorDiff <= 0) {
     alert("hello");
+    colorPanel.css("margin", `${changedColorDiff}px`);
   }
 };
 
@@ -78,7 +79,7 @@ $(document).keydown(function(event) {
 $(document).keydown(function(event) {
   let key = event.keyCode;
   if (key === 38) {
-    playerRGBArray[rgbSwitch] += 5;
+    playerRGBArray[rgbSwitch] += 10;
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
@@ -90,7 +91,7 @@ $(document).keydown(function(event) {
 
     rgbColorMatch();
   } else if (key === 40) {
-    playerRGBArray[rgbSwitch] -= 5;
+    playerRGBArray[rgbSwitch] -= 10;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
@@ -110,3 +111,18 @@ $(window).keydown(function(e) {
     e.preventDefault();
   }
 }, false);
+
+let counter = 20;
+const counterHTML = $("#counterAndScore");
+const countdown = () => {
+  counter -= 1;
+  counterHTML.html(`<h2>Time = ${counter}s</h2>`);
+  console.log(counter);
+  if (counter === 0) {
+    colorPanel.css("margin", "0px");
+    // counterHTML.html(`<h2>Colour Difference: ${colorDiff()}</h2>`);
+    clearInterval(interval);
+  }
+};
+
+const interval = setInterval(countdown, 1000);

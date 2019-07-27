@@ -4,12 +4,26 @@ body {
 }
 
 main {
+  padding: 30px;
   color: white;
+  text-align: center;
 }
 
+#counterAndScore {
+  font-size: 20px;
+  /* padding: 30px; */
+}
+
+/* #counterAndScore {
+  position: absolute;
+  top: 50vh;
+  left: 30vw;
+  font-size: 80px;
+} */
+
 .color-panel {
-  width: 5vw;
-  height: 5vw;
+  width: 4vw;
+  height: 4vw;
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -17,6 +31,7 @@ main {
   margin: 20px;
   /* transform: rotate(45deg); */
   font-size: 0;
+  transition: margin 4s;
 }
 
 .comp-color {
@@ -26,10 +41,3 @@ main {
 .player-color {
   background-color: rgb(8, 8, 250);
 }
-
-/* body{
-    background-color: red;
-
-
-    THIS IS A NOTE.. MAKE TWO circles come together when closer
-} */
