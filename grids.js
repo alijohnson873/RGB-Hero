@@ -1,19 +1,14 @@
+//add divs with different class names
 const addDivs = () => {
-  // let htmlDiv = `<div class="color-panel comp-color"><h1>div here</h1></div>
-  // <div class="color-panel player-color"></div>`;
   for (let i = 0; i < 500; i++) {
-    // htmlDiv += htmlDiv;
     let tempDiv = document.createElement("div");
-
     if (i % 2 == 0) {
       tempDiv.classList.add("color-panel", "comp-color");
     } else {
       tempDiv.classList.add("color-panel", "player-color");
     }
-
     document.querySelector("main").appendChild(tempDiv);
   }
-  // mainContainer.html(htmlDiv)
 };
 addDivs();
 
@@ -22,24 +17,19 @@ const playerColor = $(".player-color");
 const colorPanel = $(".color-panel");
 const mainContainer = $("main");
 
+//generate number between 0-255 rounded to 5 and generate rgb array string
 const randNumGenFive = () => Math.ceil((Math.random() * 255) / 5) * 5;
-
 const playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
 const compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
 const rgbStringFromArray = rgbArray => {
   return `rgb(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]})`;
 };
+// limit RGB values to 0-255
 const maxRGB = rgbValue => (rgbValue > 255 ? 255 : rgbValue);
 const minRGB = rgbValue => (rgbValue < 0 ? 0 : rgbValue);
 
-const rgbColorMatch = () => {
-  if (playerRGBArray === compRGBArray) {
-    return alert("you did it!");
-  }
-};
-
-//calculate euclidean difference
-const euclideanColorDiff = () => {
+//calculate color difference between arrays as euclidean value
+const colorDiff = () => {
   let redDifference = compRGBArray[0] - playerRGBArray[0];
   let greenDifference = compRGBArray[1] - playerRGBArray[1];
   let blueDifference = compRGBArray[2] - playerRGBArray[2];
@@ -51,24 +41,28 @@ const euclideanColorDiff = () => {
   return Math.round(eucDiff);
 };
 
-//start game
-let rgbSwitch = 0;
+//start game by adding random RGB color strings to player and computer divs
 compColor.css("background-color", rgbStringFromArray(compRGBArray));
 playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
 
-const initEuDiff = euclideanColorDiff();
-// let changedEuDiff = euclideanColorDiff();
-// console.log("init is " + initEuDiff);
-// console.log("changed is " + changedEuDiff);
-
-//calculates border radius from euclidean difference
+//return border radius as ratio of color difference
+const initEuDiff = colorDiff();
 const borderRadiusEuclidean = () => {
-  let changedEuDiff = euclideanColorDiff();
+  let changedEuDiff = colorDiff();
   let ratio = (changedEuDiff / initEuDiff) * 50;
   return ratio;
 };
 
+//win game by matching colors
+const rgbColorMatch = () => {
+  let changedColorDiff = colorDiff();
+  if (changedColorDiff <= 10) {
+    alert("hello");
+  }
+};
+
 //red green blue switch
+let rgbSwitch = 0;
 $(document).keydown(function(event) {
   let key = event.keyCode;
   if (key === 65) {
@@ -88,37 +82,31 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-
     colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
-    // colorPanel.css("margin", `${borderRadiusEuclidean()}px`);
 
     console.log(playerRGBArray);
     console.log(compRGBArray);
-    console.log(euclideanColorDiff());
+    console.log(colorDiff());
+
+    rgbColorMatch();
   } else if (key === 40) {
     playerRGBArray[rgbSwitch] -= 5;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-
     colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
-    // colorPanel.css("margin", `${borderRadiusEuclidean()}px`);
+
     console.log(playerRGBArray);
     console.log(compRGBArray);
-    console.log(euclideanColorDiff());
+    console.log(colorDiff());
+
+    rgbColorMatch();
   }
 });
 
-//prevents scrolling in browser
+//prevent scrolling in browser on up and down press
 $(window).keydown(function(e) {
-  // space and arrow keys
   if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
     e.preventDefault();
   }
 }, false);
-
-//console log what key is pressed
-// $(document).keydown(function(event) {
-//   let key = event.keyCode;
-//   console.log(key);
-// });

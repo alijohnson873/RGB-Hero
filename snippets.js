@@ -1,3 +1,23 @@
+const addDivs = () => {
+  // let htmlDiv = `<div class="color-panel comp-color"><h1>div here</h1></div>
+  // <div class="color-panel player-color"></div>`;
+  for (let i = 0; i < 500; i++) {
+    // htmlDiv += htmlDiv;
+    let tempDiv = document.createElement("div");
+
+    if (i % 2 == 0) {
+      tempDiv.classList.add("color-panel", "comp-color");
+    } else {
+      tempDiv.classList.add("color-panel", "player-color");
+    }
+
+    document.querySelector("main").appendChild(tempDiv);
+  }
+  // mainContainer.html(htmlDiv)
+};
+addDivs();
+
+
 const rgbString = (red, green, blue) =>{
     return `rgb(${red}, ${green}, ${blue})`
   }
