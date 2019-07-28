@@ -9,15 +9,49 @@
   </head>
   <body>
     <main>
-      <section>
-        <h1>RGB-Hero</h1>
+      <header>
+        <h1><span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span> HERO</h1>
+        <section class="instructions">
+          <div>
+            <h2>Instructions</h2>
+            <ul>
+              <li>
+                You are every odd circle. The computer is every even circle.
+              </li>
+              <li>
+                You have 20 seconds to change your RGB values to match the color
+                of the computers circles.
+              </li>
+
+              <li>
+                The closer you are to a color match, your cicles will turn into
+                squares.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>Controls</h2>
+            <ul>
+              <li>
+                Tap 'A', 'W' and 'D' to switch between controlling red, green
+                and blue values.
+              </li>
+              <li>
+                Hold'Up' and 'down' keys to increase or decrease the RGB value.
+              </li>
+            </ul>
+          </div>
+        </section>
         <div id="counterAndScore">
           <h2>
-            Time to match Colour = 20s
+            Time = 20s
           </h2>
         </div>
-      </section>
+        <section id="score-modal"></section>
+      </header>
     </main>
+
+    <section id="score-modal"></section>
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"

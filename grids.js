@@ -28,7 +28,7 @@ const rgbStringFromArray = rgbArray => {
 const maxRGB = rgbValue => (rgbValue > 250 ? 250 : rgbValue);
 const minRGB = rgbValue => (rgbValue < 0 ? 0 : rgbValue);
 
-//calculate color difference between arrays as euclidean value
+//calculate color difference between arrays as euclidean distance value
 const colorDiff = () => {
   let redDifference = compRGBArray[0] - playerRGBArray[0];
   let greenDifference = compRGBArray[1] - playerRGBArray[1];
@@ -57,8 +57,9 @@ const borderRadiusEuclidean = () => {
 const rgbColorMatch = () => {
   let changedColorDiff = colorDiff();
   if (changedColorDiff <= 0) {
-    alert("hello");
-    colorPanel.css("margin", `${changedColorDiff}px`);
+    alert("You smashed it! Color differnce is 0!");
+    colorPanel.css("margin", "0");
+    clearInterval(interval);
   }
 };
 
@@ -83,7 +84,7 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-    colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
+    // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
 
     console.log(playerRGBArray);
     console.log(compRGBArray);
@@ -95,7 +96,7 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-    colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
+    // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
 
     console.log(playerRGBArray);
     console.log(compRGBArray);
@@ -112,17 +113,22 @@ $(window).keydown(function(e) {
   }
 }, false);
 
+//start count down and updated counter HTML
 let counter = 20;
 const counterHTML = $("#counterAndScore");
+const scoreModal = $("#score-modal");
 const countdown = () => {
   counter -= 1;
   counterHTML.html(`<h2>Time = ${counter}s</h2>`);
   console.log(counter);
   if (counter === 0) {
     colorPanel.css("margin", "0px");
-    // counterHTML.html(`<h2>Colour Difference: ${colorDiff()}</h2>`);
+    scoreModal.html(`<h3>Colour difference is ${colorDiff()}</h3>`)
+     colorPanel.css("border-radius", "0%");
     clearInterval(interval);
   }
 };
+
+
 
 const interval = setInterval(countdown, 1000);
