@@ -63,6 +63,18 @@ const rgbColorMatch = () => {
   }
 };
 
+//high-score
+const highScoreHTML = $('high-score')
+let highScore = 10000;
+const updateScore = () =>{
+  let cd = colorDiff();
+  if (cd < highScore) {
+    highScore = cd;
+  }
+  highScore.text('<p>wdwdwdw</p>')
+}
+
+
 //red green blue switch
 let rgbSwitch = 0;
 $(document).keydown(function(event) {
@@ -84,11 +96,13 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
+    
+    
     // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
 
-    console.log(playerRGBArray);
-    console.log(compRGBArray);
-    console.log(colorDiff());
+    // console.log(playerRGBArray);
+    // console.log(compRGBArray);
+    // console.log(colorDiff());
 
     rgbColorMatch();
   } else if (key === 40) {
@@ -98,9 +112,9 @@ $(document).keydown(function(event) {
     rgbColorMatch();
     // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
 
-    console.log(playerRGBArray);
-    console.log(compRGBArray);
-    console.log(colorDiff());
+    // console.log(playerRGBArray);
+    // console.log(compRGBArray);
+    // console.log(colorDiff());
 
     rgbColorMatch();
   }
@@ -115,20 +129,27 @@ $(window).keydown(function(e) {
 
 //start count down and updated counter HTML
 let counter = 20;
-const counterHTML = $("#counterAndScore");
+const counterHTML = $("#counter");
 const scoreModal = $("#score-modal");
 const countdown = () => {
   counter -= 1;
-  counterHTML.html(`<h2>Time = ${counter}s</h2>`);
-  console.log(counter);
+  counterHTML.html(`<h2>Time: ${counter}s</h2>`);
+  // console.log(counter);
   if (counter === 0) {
     colorPanel.css("margin", "0px");
-    scoreModal.html(`<h3>Colour difference is ${colorDiff()}</h3>`)
+    scoreModal.html(`<h3>Colour difference: ${colorDiff()}</h3>`)
      colorPanel.css("border-radius", "0%");
+    //  updateScore();
     clearInterval(interval);
   }
 };
 
 
 
+// $("start").click( () => {
+//   alert("this is a click")
+// })
+
+// const startGame = () => {
+// }
 const interval = setInterval(countdown, 1000);

@@ -10,7 +10,10 @@
   <body>
     <main>
       <header>
-        <h1><span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span> HERO</h1>
+        <h1>
+          <span style="color:red">R</span><span style="color:green">G</span
+          ><span style="color:blue">B</span> HERO
+        </h1>
         <section class="instructions">
           <div>
             <h2>Instructions</h2>
@@ -42,12 +45,20 @@
             </ul>
           </div>
         </section>
-        <div id="counterAndScore">
-          <h2>
-            Time = 20s
-          </h2>
-        </div>
+
+        <button id="start">START GAME</button> <button id="reset">RESET GAME</button>
+
+
+        <!-- add semantic tags here -->
+        <div id="counter">
+            <h2>
+              Time: 20s
+            </h2>
+          </div>
+          <div id="high-score">High Score:</div>
+
         <section id="score-modal"></section>
+        
       </header>
     </main>
 
