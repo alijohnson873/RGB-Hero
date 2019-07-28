@@ -42,8 +42,14 @@ const colorDiff = () => {
 };
 
 //start game by adding random RGB color strings to player and computer divs
-compColor.css("background-color", rgbStringFromArray(compRGBArray));
-playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
+
+const resetColors= () => {
+  compColor.css("background-color", rgbStringFromArray(compRGBArray));
+  playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
+}
+
+resetColors();
+
 
 //return border radius as ratio of color difference
 const initEuDiff = colorDiff();
@@ -64,16 +70,15 @@ const rgbColorMatch = () => {
 };
 
 //high-score
-const highScoreHTML = $('high-score')
-let highScore = 10000;
-const updateScore = () =>{
+const highScoreHTML = $("#highScore");
+let highScore = 99999;
+const updateScore = () => {
   let cd = colorDiff();
   if (cd < highScore) {
     highScore = cd;
   }
-  highScore.text('<p>wdwdwdw</p>')
-}
-
+  highScoreHTML.html(`<h2>High Score:${highScore}</h2>`);
+};
 
 //red green blue switch
 let rgbSwitch = 0;
@@ -96,8 +101,7 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-    
-    
+
     // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
 
     // console.log(playerRGBArray);
@@ -128,28 +132,32 @@ $(window).keydown(function(e) {
 }, false);
 
 //start count down and updated counter HTML
+
 let counter = 20;
 const counterHTML = $("#counter");
 const scoreModal = $("#score-modal");
+
+
 const countdown = () => {
   counter -= 1;
-  counterHTML.html(`<h2>Time: ${counter}s</h2>`);
-  // console.log(counter);
+  counterHTML.html(`<h2>${counter}s</h2>`);
+
   if (counter === 0) {
     colorPanel.css("margin", "0px");
-    scoreModal.html(`<h3>Colour difference: ${colorDiff()}</h3>`)
-     colorPanel.css("border-radius", "0%");
-    //  updateScore();
+    scoreModal.html(`<h3>Colour difference: ${colorDiff()}</h3>`);
+    colorPanel.css("border-radius", "0%");
     clearInterval(interval);
+    updateScore();
+    counter = 20;
   }
 };
 
-
-
-// $("start").click( () => {
-//   alert("this is a click")
-// })
-
-// const startGame = () => {
-// }
+//why does it start immediately?
 const interval = setInterval(countdown, 1000);
+
+// $("#start").click( () => {
+//   const interval = setInterval(countdown, 1000);
+//   colorPanel.css("border-radius", "50%");
+//   colorPanel.css("margin", "10px");
+//   resetColors();
+// })

@@ -1,3 +1,21 @@
+const rgbCounter = () => {
+  counterColor = 3
+  if (counter === red )
+}
+
+['red', 'green', 'blue']
+
+
+let rgbCounter = 0
+rgbCounter += 1
+
+if (rgbCounter >= 4) {
+  rgbCounter = 0;
+}
+
+
+
+
 const addDivs = () => {
   // let htmlDiv = `<div class="color-panel comp-color"><h1>div here</h1></div>
   // <div class="color-panel player-color"></div>`;
