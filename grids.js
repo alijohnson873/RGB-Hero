@@ -43,13 +43,12 @@ const colorDiff = () => {
 
 //start game by adding random RGB color strings to player and computer divs
 
-const resetColors= () => {
+const resetColors = () => {
   compColor.css("background-color", rgbStringFromArray(compRGBArray));
   playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
-}
+};
 
 resetColors();
-
 
 //return border radius as ratio of color difference
 const initEuDiff = colorDiff();
@@ -136,7 +135,9 @@ $(window).keydown(function(e) {
 let counter = 20;
 const counterHTML = $("#counter");
 const scoreModal = $("#score-modal");
+let interval;
 
+//why does it start immediately?
 
 const countdown = () => {
   counter -= 1;
@@ -149,15 +150,13 @@ const countdown = () => {
     clearInterval(interval);
     updateScore();
     counter = 20;
+    alert(`Color difference is ${colorDiff()}`);
   }
 };
 
-//why does it start immediately?
-const interval = setInterval(countdown, 1000);
-
-// $("#start").click( () => {
-//   const interval = setInterval(countdown, 1000);
-//   colorPanel.css("border-radius", "50%");
-//   colorPanel.css("margin", "10px");
-//   resetColors();
-// })
+$("#start").click(() => {
+  interval = setInterval(countdown, 1000);
+  colorPanel.css("border-radius", "50%");
+  colorPanel.css("margin", "10px");
+  resetColors();
+});

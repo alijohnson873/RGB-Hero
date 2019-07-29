@@ -2,11 +2,11 @@ body {
   font-family: sans-serif;
   background-color: black;
   border: 30px solid;
-  border-color: green blue blue red;;
+  border-color: green blue blue red;
   box-sizing: border-box;
 }
 
-header h1{
+header h1 {
   color: rgb(255, 94, 0);
   font-size: 70px;
   margin-top: 60px;
@@ -17,6 +17,8 @@ main {
   padding: 30px;
   color: white;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #counter {
@@ -42,7 +44,7 @@ main {
   /* transform: rotate(45deg); */
   font-size: 0;
   transition-property: margin, border-radius;
-  transition-duration: 4s
+  transition-duration: 4s;
 }
 
 .comp-color {
@@ -64,7 +66,7 @@ main {
   text-align: left;
 }
 
-button{
+button {
   border: 4px solid red;
   color: white;
   background-color: transparent;
@@ -74,10 +76,15 @@ button{
   margin: 15px;
 }
 
-#start{
+#start {
   border: green 4px solid;
 }
 
 /* #highScore {
   font-size: 20px;
 } */
+
+div {
+  margin: 0;
+  padding: 0;
+}
