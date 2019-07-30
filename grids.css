@@ -17,8 +17,17 @@ main {
   padding: 30px;
   color: white;
   text-align: center;
+  /* margin: 0 auto; */
+}
+
+#circleContainer {
+  /* background-color: white; */
+  margin: 30px auto;
+  width: 82vw;
   display: flex;
   flex-wrap: wrap;
+  /* border: 1px solid red; */
+  justify-content: center;
 }
 
 #counter {
@@ -48,11 +57,13 @@ main {
 }
 
 .comp-color {
-  background-color: rgb(167, 23, 80);
+  /* background-color: rgb(167, 23, 80); */
+  background-color: rgb(243, 240, 241);
 }
 
 .player-color {
-  background-color: rgb(8, 8, 250);
+  background-color: rgb(238, 238, 247);
+  /* background-color: rgb(8, 8, 250); */
 }
 
 .instructions {

@@ -1,13 +1,13 @@
 //add divs with different class names
 const addDivs = () => {
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 400; i++) {
     let tempDiv = document.createElement("div");
     if (i % 2 == 0) {
       tempDiv.classList.add("color-panel", "comp-color");
     } else {
       tempDiv.classList.add("color-panel", "player-color");
     }
-    document.querySelector("main").appendChild(tempDiv);
+    document.getElementById("circleContainer").appendChild(tempDiv);
   }
 };
 addDivs();
@@ -15,15 +15,15 @@ addDivs();
 const compColor = $(".comp-color");
 const playerColor = $(".player-color");
 const colorPanel = $(".color-panel");
-const mainContainer = $("main");
 
 //generate number between 0-250 rounded to 10 and generate rgb array string
 const randNumGenFive = () => Math.ceil((Math.random() * 250) / 10) * 10;
-const playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
-const compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
+let playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
+let compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
 const rgbStringFromArray = rgbArray => {
   return `rgb(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]})`;
 };
+
 // limit RGB values to 0-250
 const maxRGB = rgbValue => (rgbValue > 250 ? 250 : rgbValue);
 const minRGB = rgbValue => (rgbValue < 0 ? 0 : rgbValue);
@@ -44,10 +44,13 @@ const colorDiff = () => {
 //start game by adding random RGB color strings to player and computer divs
 
 const resetColors = () => {
+  playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
+  compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
   compColor.css("background-color", rgbStringFromArray(compRGBArray));
   playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
 };
 
+//initial color divs before start game
 resetColors();
 
 //return border radius as ratio of color difference
@@ -131,18 +134,13 @@ $(window).keydown(function(e) {
 }, false);
 
 //start count down and updated counter HTML
-
 let counter = 20;
 const counterHTML = $("#counter");
 const scoreModal = $("#score-modal");
 let interval;
-
-//why does it start immediately?
-
 const countdown = () => {
   counter -= 1;
   counterHTML.html(`<h2>${counter}s</h2>`);
-
   if (counter === 0) {
     colorPanel.css("margin", "0px");
     scoreModal.html(`<h3>Colour difference: ${colorDiff()}</h3>`);
@@ -155,8 +153,20 @@ const countdown = () => {
 };
 
 $("#start").click(() => {
+  clearInterval(interval);
   interval = setInterval(countdown, 1000);
   colorPanel.css("border-radius", "50%");
   colorPanel.css("margin", "10px");
   resetColors();
+  counter = 20;
+});
+
+$("#reset").click(() => {
+  clearInterval(interval);
+  colorPanel.css("border-radius", "50%");
+  colorPanel.css("margin", "10px");
+  resetColors();
+  counter = 20;
+  counterHTML.html(`<h2>${counter}s</h2>`);
+  highScoreHTML.html(`<h2>High Score:</h2>`);
 });
