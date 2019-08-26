@@ -92,9 +92,3 @@ window.addEventListener(
   },
   false
 );
-
-// //console log what key is pressed
-// $(document).keydown(function(event) {
-//   let key = event.keyCode;
-//   console.log(key);
-// });

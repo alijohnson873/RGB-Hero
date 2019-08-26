@@ -1,9 +1,9 @@
 body {
-  font-family: sans-serif;
   background-color: black;
   border: 30px solid;
   border-color: green blue blue red;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 header h1 {
@@ -17,16 +17,14 @@ main {
   padding: 30px;
   color: white;
   text-align: center;
-  /* margin: 0 auto; */
 }
 
 #circleContainer {
-  /* background-color: white; */
   margin: 30px auto;
   width: 82vw;
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
+
   justify-content: center;
 }
 

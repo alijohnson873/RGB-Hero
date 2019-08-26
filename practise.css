@@ -1,0 +1,33 @@
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+.color-panel {
+  width: 50%;
+  height: 80vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  letter-spacing: 7px;
+}
+
+#comp-color {
+  float: left;
+  background-color: rgb(167, 23, 80);
+}
+
+#player-color {
+  float: right;
+  background-color: rgb(8, 8, 250);
+  text-align: center;
+}
+
+.control-text {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}

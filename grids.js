@@ -42,7 +42,6 @@ const colorDiff = () => {
 };
 
 //start game by adding random RGB color strings to player and computer divs
-
 const resetColors = () => {
   playerRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
   compRGBArray = [randNumGenFive(), randNumGenFive(), randNumGenFive()];
@@ -103,25 +102,10 @@ $(document).keydown(function(event) {
     playerRGBArray[rgbSwitch] = maxRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
     rgbColorMatch();
-
-    // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
-
-    // console.log(playerRGBArray);
-    // console.log(compRGBArray);
-    // console.log(colorDiff());
-
-    rgbColorMatch();
   } else if (key === 40) {
     playerRGBArray[rgbSwitch] -= 10;
     playerRGBArray[rgbSwitch] = minRGB(playerRGBArray[rgbSwitch]);
     playerColor.css("background-color", rgbStringFromArray(playerRGBArray));
-    rgbColorMatch();
-    // colorPanel.css("border-radius", `${borderRadiusEuclidean()}%`);
-
-    // console.log(playerRGBArray);
-    // console.log(compRGBArray);
-    // console.log(colorDiff());
-
     rgbColorMatch();
   }
 });
