@@ -1,4 +1,4 @@
-//add divs with different class names
+//add divs with different class names. To be refactored into JQuery
 const addDivs = () => {
   for (let i = 0; i < 400; i++) {
     let tempDiv = document.createElement("div");
